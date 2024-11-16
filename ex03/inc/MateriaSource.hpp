@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:23:32 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 20:25:52 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 16:44:27 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@
 class MateriaSource : public IMateriaSource
 {
 	public:
-		/* Orthrodox canonical form */
 		MateriaSource();
-		MateriaSource(const MateriaSource& src);
+		MateriaSource(const MateriaSource &src);
 		virtual				~MateriaSource();
-		MateriaSource& operator=(const MateriaSource& src);
+		MateriaSource &operator=(const MateriaSource &src);
 
 		/* Member functions */
 		const AMateria		*getMateria(int i) const;
 		virtual void		learnMateria(AMateria *materia);
-		virtual AMateria	*createMateria(std::string const& type);
+		virtual AMateria	*createMateria(std::string const &type);
 	private:
 		AMateria	*_inventory[MAX_INV_SLOT];
 };

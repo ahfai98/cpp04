@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:58 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 15:38:00 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:30:11 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ class Cat : public Animal
 {
 	public:
 		Cat();
-		Cat(const Cat& src);
-		Cat& operator=(const Cat& src);
+		Cat(const Cat &src);
+		Cat &operator=(const Cat &src);
 		virtual ~Cat();
 		virtual void	makeSound() const;
 };

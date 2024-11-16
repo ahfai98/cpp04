@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:58 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 15:45:51 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:24:14 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class WrongAnimal
 		std::string	_type;
 	public:
 		WrongAnimal();
-		WrongAnimal(const WrongAnimal& src);
-		WrongAnimal& operator=(const WrongAnimal& src);
+		WrongAnimal(const WrongAnimal &src);
+		WrongAnimal &operator=(const WrongAnimal &src);
 		virtual ~WrongAnimal();
 		void	makeSound() const;
 		std::string		getType() const;

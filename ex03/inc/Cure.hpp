@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:33:41 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 20:34:00 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:24:14 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ class Cure : public AMateria
 		Cure(std::string const &type);
 		Cure(const Cure &src);
 		virtual				~Cure();
-		virtual Cure& operator=(const Cure& src);
+		virtual Cure &operator=(const Cure &src);
 
 		/* Member functions */
 		virtual	AMateria	*clone() const;
-		virtual	void		use(ICharacter& target);
+		virtual	void		use(ICharacter &target);
 	protected:
 		std::string			_type;
 };

@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:16:51 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 17:53:20 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:58:35 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ Cat::Cat()
 	{
 		this->brain = new Brain();
 	}
-	catch (const std::exception& error)
+	catch (const std::exception &error)
 	{
 		std::cerr << error.what() << std::endl;
 		throw (error);
 	}
 }
 
-Cat::Cat(const Cat& src): Animal(src)
+Cat::Cat(const Cat &src): Animal(src)
 {
 	std::cout << "(Cat) Copy constructor called." << std::endl;
 	try
 	{
 		brain = new Brain();
 	}
-	catch (const std::exception& error)
+	catch (const std::exception &error)
 	{
 		std::cerr << error.what() << std::endl;
 		throw (error);
@@ -49,18 +49,19 @@ Cat::~Cat()
 	delete (this->brain);
 }
 
-Cat& Cat::operator=(const Cat& src)
+Cat &Cat::operator=(const Cat &src)
 {
 	std::cout << "(Cat) Assignment operator called." << std::endl;
-	if (this == &src)
-		return (*this);
-	this->_type = src._type;
-	*this->brain = *(src.brain);
+	if (this != &src)
+	{
+		this->_type = src._type;
+		*this->brain = *(src.brain);
+	}
 	return (*this);
 }
 
 /* Example of shallow copy
-Cat& Cat::operator=(const Cat& src)
+Cat &Cat::operator=(const Cat &src)
 {
 	if (this == &src)
 		return (*this);  // Check for self-assignment
@@ -76,7 +77,7 @@ void	Cat::makeSound() const
 	std::cout << "(Cat) Meow!" << std::endl;
 }
 
-void	Cat::setBrainIdea(int i, const std::string& newIdea)
+void	Cat::setBrainIdea(int i, const std::string &newIdea)
 {
 	return (this->brain->setIdea(i, newIdea));
 }

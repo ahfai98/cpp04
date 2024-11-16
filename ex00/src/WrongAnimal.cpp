@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:43:20 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 15:50:25 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:42:14 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ WrongAnimal::WrongAnimal()
 	this->_type = "WrongAnimal";
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal& src)
+WrongAnimal::WrongAnimal(const WrongAnimal &src)
 {
 	std::cout << "(WrongAnimal) Copy constructor called." << std::endl;
 	*this = src;
@@ -30,17 +30,16 @@ WrongAnimal::~WrongAnimal()
 	std::cout << "(WrongAnimal) Destructor called." << std::endl;
 }
 
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal& src)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &src)
 {
-	if (this == &src)
-		return (*this);
-	this->_type = src._type;
+	if (this != &src)
+		this->_type = src._type;
 	return (*this);
 }
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << "(WrongAnimal) Default WrongAnimal Class instance does not make sounds." << std::endl;
+	std::cout << "(WrongAnimal) WrongAnimal Class instance does not make sound." << std::endl;
 }
 
 std::string WrongAnimal::getType() const

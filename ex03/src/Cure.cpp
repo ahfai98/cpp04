@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:34:08 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 20:40:09 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 15:33:39 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 
 /* Default constructor function of Cure class */
 Cure::Cure() : AMateria("cure")
-{
-}
+{}
 
 /* Constructor function for string input of Cure class */
 Cure::Cure(std::string const &type) : AMateria(type)
-{
-	this->_type = type;
-}
+{}
 
 /* Copy constructor function of Cure class */
-Cure::Cure(const Cure &src) : AMateria(src._type)
-{
-	*this = src;
-}
+Cure::Cure(const Cure &src) : AMateria(src)
+{}
 
 /* Destructor function of Cure class */
 Cure::~Cure()
-{
-}
+{}
 
 /* Copy assignation operator function of Character class */
-Cure	&Cure::operator=(const Cure &src)
+Cure &Cure::operator=(const Cure &src)
 {
-	this->_type = src._type;
+	if (this != &src)
+		AMateria::operator=(src);
 	return (*this);
 }
 
@@ -51,11 +46,10 @@ AMateria	*Cure::clone() const
 		newCure = new Cure;
 		return (newCure);
 	}
-	catch(const std::exception& error)
+	catch(const std::exception &error)
 	{
-		std::cerr << error.what() << '\n';
+		std::cerr << error.what() << std::endl;
 		throw (error);
-		return (NULL);
 	}
 }
 

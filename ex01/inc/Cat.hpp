@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:58 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 17:16:20 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:47:30 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ class Cat : public Animal
 		Brain	*brain;
 	public:
 		Cat();
-		Cat(const Cat& src);
-		Cat& operator=(const Cat& src);
+		Cat(const Cat &src);
+		Cat &operator=(const Cat &src);
 		virtual ~Cat();
-		
 		virtual void	makeSound() const;
-		void	setBrainIdea(int i, const std::string& newIdea);
-		const std::string& getBrainIdea(int i)const;
+		void	setBrainIdea(int i, const std::string &newIdea);
+		const std::string &getBrainIdea(int i)const;
 };
 
 #endif

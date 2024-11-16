@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:20:22 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 20:22:06 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 16:46:21 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 AMateria::AMateria(void)
 {
-	this->_type = "AMateria";
+	this->_type = "unknown";
 }
 
 /* Constructor function for string input of Amateria class */
@@ -30,9 +30,7 @@ AMateria::AMateria(const AMateria &src)
 }
 
 /* Destructor function of AMateria class */
-AMateria::~AMateria(void)
-{
-}
+AMateria::~AMateria(void){}
 
 /* Copy assignation operator function of AMateria class */
 AMateria	&AMateria::operator=(const AMateria &src)
@@ -50,5 +48,5 @@ const std::string	&AMateria::getType(void) const
 /* Use function, to be used on the target */
 void	AMateria::use(ICharacter &target)
 {
-	std::cout << target.getName() << " said ok" << std::endl;
+	std::cout << target.getName() << " was not affected by AMateria instance." << std::endl;
 }

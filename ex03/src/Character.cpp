@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:16:51 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 20:13:49 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 17:11:47 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@ Character::Character()
 {
 	std::cout << "(Character) Default constructor called." << std::endl;
 	this->_name = "Default";
+	this->_floor_mat_count = 0;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 		_inventory[i] = NULL;
+	for (int i = 0; i < MAX_FLR_SPACE; i++)
+		_floor[i] = NULL;
 }
 
-Character::Character(std::string const& name)
+Character::Character(std::string const &name)
 {
-	std::cout << "(Character) named" << name << "created." << std::endl;
 	this->_name = name;
+	this->_floor_mat_count = 0;
+	std::cout << "(Character) named" << this->_name << "created." << std::endl;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 		_inventory[i] = NULL;
+	for (int i = 0; i < MAX_FLR_SPACE; i++)
+		_floor[i] = NULL;
 }
 
-Character::Character(const Character& src)
+Character::Character(const Character &src)
 {
 	std::cout << "(Character) Copy constructor called." << std::endl;
 	*this = src;
@@ -43,27 +49,58 @@ Character::~Character()
 		if (_inventory[i] != NULL)
 			delete(_inventory[i]);
 	}
+	for (int i = 0; i < MAX_FLR_SPACE; i++)
+	{
+		if (_floor[i] != NULL)
+			delete(_floor[i]);
+		else
+			break;
+	}
 }
 
-Character& Character::operator=(const Character& src)
+Character &Character::operator=(const Character &src)
 {
 	std::cout << "(Character) Assignment operator called." << std::endl;
 	if (this == &src)
 		return (*this);
-	const AMateria *temp;
+
 	this->_name = src._name;
+	this->_floor_mat_count = src._floor_mat_count;
+	for (int i = 0; i < MAX_INV_SLOT; i++)
+	{
+		if (_inventory[i] != NULL)
+		{
+			delete(_inventory[i]);
+			_inventory[i] = NULL;
+		}
+	}
+	for (int i = 0; i < MAX_FLR_SPACE; i++)
+	{
+		if (_floor[i] != NULL)
+		{
+			delete(_floor[i]);
+			_floor[i] = NULL;
+		}
+	}
+	const AMateria *temp;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 	{
 		temp = src.getMateria(i);
 		if (temp != NULL)
 			_inventory[i] = temp->clone();
+	}
+	for (int i = 0; i < MAX_FLR_SPACE; i++)
+	{
+		temp = src.getFloorMateria(i);
+		if (temp != NULL)
+			_inventory[i] = temp->clone();
 		else
-			_inventory[i] = NULL;
+			break;
 	}
 	return (*this);
 }
 
-const std::string& Character::getName() const
+const std::string &Character::getName() const
 {
 	return (this->_name);
 }
@@ -76,6 +113,18 @@ const AMateria	*Character::getMateria(int i) const
 	return (this->_inventory[i]);
 }
 
+const AMateria	*Character::getFloorMateria(int i) const
+{
+	if (i < 0 || i >= MAX_FLR_SPACE)
+		return (NULL);
+	return (this->_floor[i]);
+}
+
+unsigned int	Character::getFloorMatCount(void) const
+{
+	return (this->_floor_mat_count);
+}
+
 /* Equips materia in inventory if it exists, else do nothing */
 void	Character::equip(AMateria *m)
 {
@@ -86,21 +135,42 @@ void	Character::equip(AMateria *m)
 			this->_inventory[i] = m;
 			break ;
 		}
+		else if (this->_inventory[i] == m)
+		{
+			std::cout << "This Materia has already been equipped." << std::endl;
+			break ;
+		}
 	}
 }
 
 /* Unequips materia in inventory if it exists, else do nothing */
 void	Character::unequip(int idx)
 {
-	if (idx < 0 || idx >= MAX_INV_SLOT || this->_inventory[idx] == NULL)
-		return ;
-	this->_inventory[idx] = NULL;
+	if (idx < 0 || idx >= MAX_INV_SLOT)
+		std::cout << "Unequip failed: Invalid Slot ID." << std::endl;
+	else if (this->_inventory[idx] == NULL)
+		std::cout << "Unequip failed: Slot " << idx << " is empty." << std::endl;
+	else if (this->_floor_mat_count >= MAX_FLR_SPACE)
+	{
+		std::cout << "Unequip failed: The Floor is filled with Materias." << std::endl;
+	}
+	else
+	{
+		this->_floor[this->_floor_mat_count] = this->_inventory[idx];
+		this->_floor_mat_count++;
+		this->_inventory[idx] = NULL;
+		std::cout << "Materia at Slot " << idx << " was unequipped." << std::endl;
+		std::cout << "Number of Materias on the floor: " << this->_floor_mat_count << "/" << MAX_FLR_SPACE << std::endl;
+	}
 }
 
 /* Use materia in inventory if it exists, else do nothing */
-void	Character::use(int idx, ICharacter& target)
+void	Character::use(int idx, ICharacter &target)
 {
-	if (idx < 0 || idx >= MAX_INV_SLOT || this->_inventory[idx] == NULL)
-		return ;
-	this->_inventory[idx]->use(target);
+	if (idx < 0 || idx >= MAX_INV_SLOT)
+		std::cout << "Use Materia failed: Invalid Slot ID." << std::endl;
+	else if (this->_inventory[idx] == NULL)
+		std::cout << "Use Materia failed: Slot " << idx << " is empty." << std::endl;
+	else
+		this->_inventory[idx]->use(target);
 }

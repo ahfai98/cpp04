@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:17:07 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 17:37:40 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 15:09:54 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int main()
 {
 	{
 		std::cout << "\n---------- EX01 Main ----------\n" << std::endl;
-		Animal* j = new Dog();
-		Animal* i = new Cat();
+		Animal *dog = new Dog();
+		Animal *cat = new Cat();
 
-		delete j;
-		delete i;
+		delete dog;
+		delete cat;
 	}
 	{
 		std::cout << "\n---------- EX01 First Test ----------\n" << std::endl;
@@ -42,7 +42,7 @@ int main()
 		Cat cat1;
 		Cat cat2;
 		
-		cat1.setBrainIdea(0, "I am a cat");
+		cat1.setBrainIdea(0, "I am a cat.");
 		cat2 = cat1;
 		std::cout << "Cat1 idea: " << cat1.getBrainIdea(0) << std::endl;
 		std::cout << "Cat1 idea address: " << &(cat1.getBrainIdea(0)) << std::endl;
@@ -52,7 +52,7 @@ int main()
 	{
 		std::cout << "\n---------- EX01 Third Test ----------\n" << std::endl;
 		Cat cat1;
-		cat1.setBrainIdea(0, "Why cat is I am?");
+		cat1.setBrainIdea(0, "I am a cat?");
 		Cat cat2(cat1);
 
 		std::cout << "Cat1 idea: " << cat1.getBrainIdea(0) << std::endl;

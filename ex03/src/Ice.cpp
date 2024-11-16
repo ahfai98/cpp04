@@ -2,30 +2,25 @@
 
 /* Default constructor function of Ice class */
 Ice::Ice() : AMateria("ice")
-{
-}
+{}
 
 /* Constructor function for string input of Ice class */
 Ice::Ice(std::string const &type) : AMateria(type)
-{
-	this->_type = type;
-}
+{}
 
 /* Copy constructor function of Ice class */
-Ice::Ice(const Ice &src): AMateria(src._type)
-{
-	*this = src;
-}
+Ice::Ice(const Ice &src): AMateria(src)
+{}
 
 /* Destructor function of Ice class */
 Ice::~Ice()
-{
-}
+{}
 
 /* Copy assignation operator function of Character class */
-Ice& Ice::operator=(const Ice& src)
+Ice &Ice::operator=(const Ice &src)
 {
-	this->_type = src._type;
+	if (this != &src)
+		AMateria::operator=(src);
 	return (*this);
 }
 
@@ -39,11 +34,10 @@ AMateria	*Ice::clone() const
 		newIce = new Ice;
 		return (newIce);
 	}
-	catch(const std::exception& error)
+	catch(const std::exception &error)
 	{
 		std::cerr << error.what() << '\n';
 		throw (error);
-		return (NULL);
 	}
 }
 

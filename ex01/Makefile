@@ -6,7 +6,7 @@
 #    By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 13:40:07 by jyap              #+#    #+#              #
-#    Updated: 2024/11/07 17:45:55 by jyap             ###   ########.fr        #
+#    Updated: 2024/11/16 15:04:33 by jyap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 NAME = program
 
-CC = c++
+CC = c++ -g
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 

@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:58 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/07 18:03:13 by jyap             ###   ########.fr       */
+/*   Updated: 2024/11/16 14:24:14 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Animal
 		std::string	_type;
 	public:
 		Animal();
-		Animal(const Animal& src);
-		Animal& operator=(const Animal& src);
+		Animal(const Animal &src);
+		Animal &operator=(const Animal &src);
 		virtual ~Animal();
 		virtual void	makeSound() const = 0;
 		std::string		getType() const;
