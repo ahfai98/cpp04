@@ -1,22 +1,13 @@
 #include "../inc/Ice.hpp"
 
-/* Default constructor function of Ice class */
-Ice::Ice() : AMateria("ice")
-{}
+Ice::Ice(): AMateria("ice"){}
 
-/* Constructor function for string input of Ice class */
-Ice::Ice(std::string const &type) : AMateria(type)
-{}
+Ice::Ice(std::string const &type): AMateria(type){}
 
-/* Copy constructor function of Ice class */
-Ice::Ice(const Ice &src): AMateria(src)
-{}
+Ice::Ice(const Ice &src): AMateria(src){}
 
-/* Destructor function of Ice class */
-Ice::~Ice()
-{}
+Ice::~Ice(){}
 
-/* Copy assignation operator function of Character class */
 Ice &Ice::operator=(const Ice &src)
 {
 	if (this != &src)
@@ -24,7 +15,6 @@ Ice &Ice::operator=(const Ice &src)
 	return (*this);
 }
 
-/* Clone function to create a copy of Ice */
 AMateria	*Ice::clone() const
 {
 	AMateria *newIce;
@@ -41,7 +31,6 @@ AMateria	*Ice::clone() const
 	}
 }
 
-/* Use function to use Ice on a target */
 void	Ice::use(ICharacter &target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl; 

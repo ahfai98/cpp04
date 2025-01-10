@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:16:51 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/16 17:11:47 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 19:10:40 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Character::Character(std::string const &name)
 {
 	this->_name = name;
 	this->_floor_mat_count = 0;
-	std::cout << "(Character) named" << this->_name << "created." << std::endl;
+	std::cout << "(Character) " << this->_name << " created." << std::endl;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 		_inventory[i] = NULL;
 	for (int i = 0; i < MAX_FLR_SPACE; i++)
@@ -47,12 +47,18 @@ Character::~Character()
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 	{
 		if (_inventory[i] != NULL)
+		{
 			delete(_inventory[i]);
+			_inventory[i] = NULL;
+		}
 	}
 	for (int i = 0; i < MAX_FLR_SPACE; i++)
 	{
 		if (_floor[i] != NULL)
+		{
 			delete(_floor[i]);
+			_floor[i] = NULL;
+		}
 		else
 			break;
 	}
@@ -63,7 +69,6 @@ Character &Character::operator=(const Character &src)
 	std::cout << "(Character) Assignment operator called." << std::endl;
 	if (this == &src)
 		return (*this);
-
 	this->_name = src._name;
 	this->_floor_mat_count = src._floor_mat_count;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
@@ -81,6 +86,8 @@ Character &Character::operator=(const Character &src)
 			delete(_floor[i]);
 			_floor[i] = NULL;
 		}
+		else
+			break;
 	}
 	const AMateria *temp;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
@@ -133,6 +140,7 @@ void	Character::equip(AMateria *m)
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = m;
+			std::cout << m->getType() << " Materia equipped at Slot " << i << std::endl;
 			break ;
 		}
 		else if (this->_inventory[i] == m)
@@ -158,8 +166,8 @@ void	Character::unequip(int idx)
 	{
 		this->_floor[this->_floor_mat_count] = this->_inventory[idx];
 		this->_floor_mat_count++;
+		std::cout << this->_inventory[idx]->getType() << " Materia at Slot " << idx << " was unequipped." << std::endl;
 		this->_inventory[idx] = NULL;
-		std::cout << "Materia at Slot " << idx << " was unequipped." << std::endl;
 		std::cout << "Number of Materias on the floor: " << this->_floor_mat_count << "/" << MAX_FLR_SPACE << std::endl;
 	}
 }

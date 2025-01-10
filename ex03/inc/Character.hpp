@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:58 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/16 16:57:52 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 18:40:12 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ class Character : public ICharacter
 		Character();
 		Character(const std::string &name);
 		Character(const Character &src);
-		virtual	~Character();
+		~Character();
 		Character &operator=(const Character &src);
 
-		virtual const std::string &getName() const;
+		const std::string &getName() const;
 		const AMateria *getMateria(int i) const;
 		const AMateria *getFloorMateria(int i) const;
 		unsigned int getFloorMatCount()const;
-		virtual void	equip(AMateria *m);
-		virtual void	unequip(int idx);
-		virtual void	use(int idx, ICharacter &target);
+		void	equip(AMateria *m);
+		void	unequip(int idx);
+		void	use(int idx, ICharacter &target);
 };
 
 #endif

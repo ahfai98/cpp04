@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:23:32 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/16 16:44:27 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 18:54:04 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ class MateriaSource : public IMateriaSource
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &src);
-		virtual				~MateriaSource();
+		virtual	~MateriaSource();
 		MateriaSource &operator=(const MateriaSource &src);
 
 		/* Member functions */
-		const AMateria		*getMateria(int i) const;
-		virtual void		learnMateria(AMateria *materia);
-		virtual AMateria	*createMateria(std::string const &type);
+		const AMateria *getMateria(int i) const;
+		void learnMateria(AMateria *materia);
+		AMateria *createMateria(std::string const &type);
+		
 	private:
-		AMateria	*_inventory[MAX_INV_SLOT];
+		AMateria *_inventory[MAX_INV_SLOT];
 };
 
 #endif

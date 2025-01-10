@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:30:13 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/16 15:23:01 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 19:03:15 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Ice : public AMateria
 		Ice(std::string const &type);
 		Ice(const Ice &src);
 		virtual ~Ice();
-		virtual Ice &operator=(const Ice &src);
+		Ice &operator=(const Ice &src);
 
 		/* Member functions */
 		virtual	AMateria *clone() const;

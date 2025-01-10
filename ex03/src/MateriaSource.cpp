@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:26:20 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/16 16:49:46 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 19:12:49 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 		if (this->_inventory[i] != NULL)
+		{
 			delete (this->_inventory[i]);
+			this->_inventory[i] = NULL;
+		}
+	std::cout << "(MateriaSource) Destructor called." << std::endl;
 }
 
 /* Copy assignation operator function of Character class */
@@ -68,6 +72,7 @@ void	MateriaSource::learnMateria(AMateria *materia)
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = materia;
+			std::cout << materia->getType() << " Materia learned at Slot " << i << std::endl;
 			break ;
 		}
 	}
@@ -81,7 +86,10 @@ AMateria	*MateriaSource::createMateria(std::string const &type)
 		if (this->_inventory[i] == NULL)
 			break ;
 		if (this->_inventory[i]->getType() == type)
+		{
+			std::cout << type << " Materia was created." << std::endl;
 			return (this->_inventory[i]->clone());
+		}
 	}
 	return (0);
 }
