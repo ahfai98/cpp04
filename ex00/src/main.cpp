@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:17:07 by jyap              #+#    #+#             */
-/*   Updated: 2024/11/16 14:45:40 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 17:52:44 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main()
 
 		std::cout << dog->getType() << " " << std::endl;
 		std::cout << cat->getType() << " " << std::endl;
-		dog->makeSound(); //will output the cat sound!
+		dog->makeSound();
 		cat->makeSound();
 		ani->makeSound();
 		delete (ani);
