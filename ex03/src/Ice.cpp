@@ -17,18 +17,7 @@ Ice &Ice::operator=(const Ice &src)
 
 AMateria	*Ice::clone() const
 {
-	AMateria *newIce;
-
-	try
-	{
-		newIce = new Ice;
-		return (newIce);
-	}
-	catch(const std::exception &error)
-	{
-		std::cerr << error.what() << '\n';
-		throw (error);
-	}
+	return (new Ice(*this));
 }
 
 void	Ice::use(ICharacter &target)

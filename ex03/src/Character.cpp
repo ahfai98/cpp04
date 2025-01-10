@@ -6,18 +6,19 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:16:51 by jyap              #+#    #+#             */
-/*   Updated: 2025/01/10 19:10:40 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 20:43:01 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Character.hpp"
+
+unsigned int Character::_floor_mat_count = 0;
 
 // Constructor
 Character::Character()
 {
 	std::cout << "(Character) Default constructor called." << std::endl;
 	this->_name = "Default";
-	this->_floor_mat_count = 0;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 		_inventory[i] = NULL;
 	for (int i = 0; i < MAX_FLR_SPACE; i++)
@@ -27,7 +28,6 @@ Character::Character()
 Character::Character(std::string const &name)
 {
 	this->_name = name;
-	this->_floor_mat_count = 0;
 	std::cout << "(Character) " << this->_name << " created." << std::endl;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 		_inventory[i] = NULL;
@@ -49,7 +49,6 @@ Character::~Character()
 		if (_inventory[i] != NULL)
 		{
 			delete(_inventory[i]);
-			_inventory[i] = NULL;
 		}
 	}
 	for (int i = 0; i < MAX_FLR_SPACE; i++)
@@ -57,10 +56,7 @@ Character::~Character()
 		if (_floor[i] != NULL)
 		{
 			delete(_floor[i]);
-			_floor[i] = NULL;
 		}
-		else
-			break;
 	}
 }
 
@@ -70,7 +66,6 @@ Character &Character::operator=(const Character &src)
 	if (this == &src)
 		return (*this);
 	this->_name = src._name;
-	this->_floor_mat_count = src._floor_mat_count;
 	for (int i = 0; i < MAX_INV_SLOT; i++)
 	{
 		if (_inventory[i] != NULL)
@@ -127,9 +122,9 @@ const AMateria	*Character::getFloorMateria(int i) const
 	return (this->_floor[i]);
 }
 
-unsigned int	Character::getFloorMatCount(void) const
+unsigned int	Character::getFloorMatCount(void)
 {
-	return (this->_floor_mat_count);
+	return (_floor_mat_count);
 }
 
 /* Equips materia in inventory if it exists, else do nothing */
@@ -140,7 +135,7 @@ void	Character::equip(AMateria *m)
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = m;
-			std::cout << m->getType() << " Materia equipped at Slot " << i << std::endl;
+			std::cout << m->getType() << " Materia equipped by " << this->getName() << " at Slot " << i << "." << std::endl;
 			break ;
 		}
 		else if (this->_inventory[i] == m)

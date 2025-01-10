@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fire.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 13:17:07 by jyap              #+#    #+#             */
-/*   Updated: 2025/01/10 18:17:38 by jyap             ###   ########.fr       */
+/*   Created: 2024/11/07 20:30:13 by jyap              #+#    #+#             */
+/*   Updated: 2025/01/10 19:27:30 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
+#ifndef FIRE_HPP
+# define FIRE_HPP
 
-int main()
+# include <iostream>
+# include <string>
+# include "AMateria.hpp"
+
+class Fire : public AMateria
 {
-	//Animal a;  // Error: Cannot instantiate abstract class Animal
-	Dog dog;
-	Cat cat;
+	public:
+		Fire();
+		Fire(std::string const &type);
+		Fire(const Fire &src);
+		virtual ~Fire();
+		Fire &operator=(const Fire &src);
 
-	dog.makeSound();
-	cat.makeSound();
-	return (0);
-}
+		/* Member functions */
+		virtual	AMateria *clone() const;
+		virtual	void use(ICharacter &target);
+	protected:
+		std::string			_type;
+};
+
+#endif

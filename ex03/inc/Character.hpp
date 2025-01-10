@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:58 by jyap              #+#    #+#             */
-/*   Updated: 2025/01/10 18:40:12 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 19:54:43 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Character : public ICharacter
 		std::string _name;
 		AMateria	*_inventory[MAX_INV_SLOT];
 		AMateria	*_floor[MAX_FLR_SPACE];
-		unsigned int _floor_mat_count;
+		static unsigned int _floor_mat_count;
 	
 	public:
 		Character();
@@ -35,7 +35,7 @@ class Character : public ICharacter
 		const std::string &getName() const;
 		const AMateria *getMateria(int i) const;
 		const AMateria *getFloorMateria(int i) const;
-		unsigned int getFloorMatCount()const;
+		static unsigned int getFloorMatCount();
 		void	equip(AMateria *m);
 		void	unequip(int idx);
 		void	use(int idx, ICharacter &target);

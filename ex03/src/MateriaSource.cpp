@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:26:20 by jyap              #+#    #+#             */
-/*   Updated: 2025/01/10 19:12:49 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 20:26:12 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ MateriaSource::~MateriaSource()
 		if (this->_inventory[i] != NULL)
 		{
 			delete (this->_inventory[i]);
-			this->_inventory[i] = NULL;
 		}
 	std::cout << "(MateriaSource) Destructor called." << std::endl;
 }
@@ -72,7 +71,7 @@ void	MateriaSource::learnMateria(AMateria *materia)
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = materia;
-			std::cout << materia->getType() << " Materia learned at Slot " << i << std::endl;
+			std::cout << materia->getType() << " Materia learned at Slot " << i << "." << std::endl;
 			break ;
 		}
 	}

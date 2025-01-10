@@ -6,7 +6,7 @@
 /*   By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:34:08 by jyap              #+#    #+#             */
-/*   Updated: 2025/01/10 18:34:34 by jyap             ###   ########.fr       */
+/*   Updated: 2025/01/10 20:28:40 by jyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,7 @@ Cure &Cure::operator=(const Cure &src)
 //Clone function
 AMateria	*Cure::clone() const
 {
-	AMateria *newCure;
-
-	try
-	{
-		newCure = new Cure;
-		return (newCure);
-	}
-	catch(const std::exception &error)
-	{
-		std::cerr << error.what() << std::endl;
-		throw (error);
-	}
+	return (new Cure(*this));
 }
 
 void	Cure::use(ICharacter &target)

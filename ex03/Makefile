@@ -6,7 +6,7 @@
 #    By: jyap <jyap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 13:40:07 by jyap              #+#    #+#              #
-#    Updated: 2024/11/07 18:14:12 by jyap             ###   ########.fr        #
+#    Updated: 2025/01/10 19:29:59 by jyap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC_FILES	= 	main.cpp \
 				Character.cpp \
 				AMateria.cpp \
 				Cure.cpp \
-				Ice.cpp
+				Ice.cpp \
+				Fire.cpp
 
 OBJ_FILES	= $(SRC_FILES:.cpp=.o)
 
